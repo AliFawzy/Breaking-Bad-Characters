@@ -23,7 +23,6 @@
 		042188152683E72800F30573 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188142683E72800F30573 /* HomeScreenViewModel.swift */; };
 		042188172683E73300F30573 /* CharacterScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188162683E73300F30573 /* CharacterScreenModel.swift */; };
 		042188192683E73F00F30573 /* HomeCharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188182683E73F00F30573 /* HomeCharacterModel.swift */; };
-		0421881B2683E75B00F30573 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421881A2683E75B00F30573 /* ApiService.swift */; };
 		0421881E2683E77D00F30573 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421881C2683E77D00F30573 /* BaseViewController.swift */; };
 		0421881F2683E77D00F30573 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421881D2683E77D00F30573 /* BaseNavigationController.swift */; };
 		042188262683E7D300F30573 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188212683E7D300F30573 /* ProgressHUD.swift */; };
@@ -59,7 +58,6 @@
 		042188142683E72800F30573 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		042188162683E73300F30573 /* CharacterScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenModel.swift; sourceTree = "<group>"; };
 		042188182683E73F00F30573 /* HomeCharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCharacterModel.swift; sourceTree = "<group>"; };
-		0421881A2683E75B00F30573 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		0421881C2683E77D00F30573 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0421881D2683E77D00F30573 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		042188212683E7D300F30573 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 			children = (
 				042187F92683E54F00F30573 /* Delegates */,
 				042187FD2683E5D200F30573 /* Helper */,
-				042187FF2683E5F000F30573 /* APIServices */,
 				042187FE2683E5D900F30573 /* Base */,
 				042187FC2683E5C600F30573 /* Model */,
 				042187FB2683E5BC00F30573 /* ViewModel */,
@@ -180,14 +177,6 @@
 				0421881D2683E77D00F30573 /* BaseNavigationController.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		042187FF2683E5F000F30573 /* APIServices */ = {
-			isa = PBXGroup;
-			children = (
-				0421881A2683E75B00F30573 /* ApiService.swift */,
-			);
-			path = APIServices;
 			sourceTree = "<group>";
 		};
 		042188002683E62000F30573 /* Cells */ = {
@@ -452,7 +441,6 @@
 				047E500F2684CD9C005C4BB1 /* DictionaryExtension.swift in Sources */,
 				047E50112684CDCD005C4BB1 /* StringExtension.swift in Sources */,
 				042188192683E73F00F30573 /* HomeCharacterModel.swift in Sources */,
-				0421881B2683E75B00F30573 /* ApiService.swift in Sources */,
 				042188282683E7D300F30573 /* helperFunctions.swift in Sources */,
 				042188272683E7D300F30573 /* Rechability.swift in Sources */,
 				0421882C2683FBED00F30573 /* HomeCharactersTableCell.swift in Sources */,
