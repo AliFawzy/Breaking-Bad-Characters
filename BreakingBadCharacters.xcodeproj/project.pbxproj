@@ -19,9 +19,7 @@
 		0421880D2683E6F700F30573 /* CharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0421880B2683E6F700F30573 /* CharacterViewController.xib */; };
 		042188102683E70700F30573 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421880E2683E70700F30573 /* HomeViewController.swift */; };
 		042188112683E70700F30573 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0421880F2683E70700F30573 /* HomeViewController.xib */; };
-		042188132683E71C00F30573 /* CharacterScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188122683E71C00F30573 /* CharacterScreenViewModel.swift */; };
 		042188152683E72800F30573 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188142683E72800F30573 /* HomeScreenViewModel.swift */; };
-		042188172683E73300F30573 /* CharacterScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188162683E73300F30573 /* CharacterScreenModel.swift */; };
 		042188192683E73F00F30573 /* HomeCharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042188182683E73F00F30573 /* HomeCharacterModel.swift */; };
 		0421881E2683E77D00F30573 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421881C2683E77D00F30573 /* BaseViewController.swift */; };
 		0421881F2683E77D00F30573 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421881D2683E77D00F30573 /* BaseNavigationController.swift */; };
@@ -58,9 +56,7 @@
 		0421880B2683E6F700F30573 /* CharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewController.xib; sourceTree = "<group>"; };
 		0421880E2683E70700F30573 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0421880F2683E70700F30573 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
-		042188122683E71C00F30573 /* CharacterScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenViewModel.swift; sourceTree = "<group>"; };
 		042188142683E72800F30573 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
-		042188162683E73300F30573 /* CharacterScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenModel.swift; sourceTree = "<group>"; };
 		042188182683E73F00F30573 /* HomeCharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCharacterModel.swift; sourceTree = "<group>"; };
 		0421881C2683E77D00F30573 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0421881D2683E77D00F30573 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -153,7 +149,6 @@
 		042187FB2683E5BC00F30573 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				042188072683E67F00F30573 /* CharacterScreenViewModel */,
 				042188062683E67400F30573 /* HomeScreenViewModel */,
 			);
 			path = ViewModel;
@@ -162,7 +157,6 @@
 		042187FC2683E5C600F30573 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				042188092683E6C100F30573 /* CharacterScreenModel */,
 				042188082683E6B100F30573 /* HomeScreenModel */,
 			);
 			path = Model;
@@ -252,28 +246,12 @@
 			path = HomeScreenViewModel;
 			sourceTree = "<group>";
 		};
-		042188072683E67F00F30573 /* CharacterScreenViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				042188122683E71C00F30573 /* CharacterScreenViewModel.swift */,
-			);
-			path = CharacterScreenViewModel;
-			sourceTree = "<group>";
-		};
 		042188082683E6B100F30573 /* HomeScreenModel */ = {
 			isa = PBXGroup;
 			children = (
 				042188182683E73F00F30573 /* HomeCharacterModel.swift */,
 			);
 			path = HomeScreenModel;
-			sourceTree = "<group>";
-		};
-		042188092683E6C100F30573 /* CharacterScreenModel */ = {
-			isa = PBXGroup;
-			children = (
-				042188162683E73300F30573 /* CharacterScreenModel.swift */,
-			);
-			path = CharacterScreenModel;
 			sourceTree = "<group>";
 		};
 		042188202683E7D300F30573 /* Functions */ = {
@@ -460,8 +438,6 @@
 				04BBFA0226868E6700CE5F53 /* Response+Argo.swift in Sources */,
 				042188152683E72800F30573 /* HomeScreenViewModel.swift in Sources */,
 				04BBF9FC26868C9600CE5F53 /* Observable+Argo.swift in Sources */,
-				042188172683E73300F30573 /* CharacterScreenModel.swift in Sources */,
-				042188132683E71C00F30573 /* CharacterScreenViewModel.swift in Sources */,
 				047E500F2684CD9C005C4BB1 /* DictionaryExtension.swift in Sources */,
 				047E50112684CDCD005C4BB1 /* StringExtension.swift in Sources */,
 				042188192683E73F00F30573 /* HomeCharacterModel.swift in Sources */,
