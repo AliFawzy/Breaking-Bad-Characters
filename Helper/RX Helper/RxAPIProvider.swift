@@ -12,6 +12,7 @@ import Moya
 
 public enum RxKoreaAPI {
     case getCharacterList(offset: Int, limit: Int)
+    case getAllCharacterList
 }
 
 extension RxKoreaAPI: TargetType {
@@ -25,6 +26,8 @@ extension RxKoreaAPI: TargetType {
     public var path: String {
         switch self {
         case .getCharacterList:
+            return METHOD_NAME.characters
+        case .getAllCharacterList:
             return METHOD_NAME.characters
         }
     }
@@ -45,6 +48,8 @@ extension RxKoreaAPI: TargetType {
         
         case let .getCharacterList(offset, limit):
             return .requestParameters(parameters: ["offset": offset * limit, "limit": limit], encoding: URLEncoding.default)
+        case  .getAllCharacterList:
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
         }
        
     }
@@ -61,11 +66,17 @@ extension RxKoreaAPI: TargetType {
 public protocol APIProviderType {
 
     func  getCharacterList(offset: Int, limit: Int) -> Observable<[HomeCharacterModel]>
+    func  getAllCharacterList() -> Observable<[HomeCharacterModel]>
 }
 
 public struct RxAPIProvider: APIProviderType {
     
+    
+    
     public static var shared = RxAPIProvider()
+    public func getAllCharacterList() -> Observable<[HomeCharacterModel]> {
+        return km_request(.getAllCharacterList)
+    }
     
     public func getCharacterList(offset: Int, limit: Int = 20) -> Observable<[HomeCharacterModel]> {
         return km_request(.getCharacterList(offset: offset, limit: limit))

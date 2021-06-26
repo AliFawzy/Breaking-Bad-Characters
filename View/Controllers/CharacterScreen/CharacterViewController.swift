@@ -28,11 +28,9 @@ class CharacterViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         subscribeResponse()
-        subscribeLoading()
         setupCollectionView()
-        homeViewModel.setupSliderTimer()
         subscribeBackBtn()
         subscribeNextBtn()
         subscribePreviousBtn()
@@ -43,58 +41,18 @@ class CharacterViewController: BaseViewController {
 // MARK: - Functions
 extension CharacterViewController{
     
-    
-    func getCharacters(){
-        if self.homeViewModel.arrCharacters.value.count < indexId{
-        self.homeViewModel.arrCharacters.asObservable()
-            .map { _ in () }
-            .bind(to: self.homeViewModel.loadNextPageTrigger)
-            .disposed(by: disposeBage)
-            
-    }
-    }
-    private func subscribeResponse(){
+    private func setupCollectionView()  {
+        charactersCollectionView.register(UINib(nibName: self.characterCollectionCell , bundle: nil), forCellWithReuseIdentifier:  self.characterCollectionCell)
+        charactersCollectionView.rx.setDelegate(self).disposed(by: disposeBage)
         
-        homeViewModel.arrCharacters.bind(to: self.charactersCollectionView.rx.items(cellIdentifier: self.characterCollectionCell, cellType: CharacterCollectionViewCell.self)){ (row, result, cell) in
+    }
+    
+    private func subscribeResponse(){
+        homeViewModel.allCharacters.bind(to: self.charactersCollectionView.rx.items(cellIdentifier: self.characterCollectionCell, cellType: CharacterCollectionViewCell.self)){ (row, result, cell) in
             cell.configure(with: result)
             
             self.charactersCollectionView.scrollToItem(at: IndexPath(row: self.indexId, section: 0), at: [.centeredHorizontally, .centeredVertically], animated: false)
-            
-            
-            
         }.disposed(by: disposeBage)
-        
-        self.charactersCollectionView.rx_reachedBottom
-            .map { _ in () }
-            .bind(to: self.homeViewModel.loadNextPageTrigger)
-            .disposed(by: disposeBage)
-
-        self.refreshControl.rx.controlEvent(.valueChanged)
-            .bind(to: self.homeViewModel.refreshTrigger)
-            .disposed(by: disposeBage)
-
-        self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .map { _ in () }
-            .bind(to: homeViewModel.refreshTrigger)
-            .disposed(by: disposeBage)
-        
-        self.homeViewModel.arrCharacters.asObservable()
-            .map { _ in false }
-            .bind(to: self.refreshControl.rx.isRefreshing)
-            .disposed(by: disposeBage)
-        
-        
-        
-    }
-    private func subscribeLoading(){
-        homeViewModel.loadingBehavoir.subscribe(onNext: {  (isLoading) in
-            
-            if isLoading{
-                ProgressHUD.show()
-            }else{
-                ProgressHUD.dismiss()
-            }
-        }).disposed(by: disposeBage)
     }
     
     private func subscribeBackBtn(){
@@ -122,14 +80,8 @@ extension CharacterViewController{
         }).disposed(by: disposeBage)
     }
 }
-// MARK: - Setup collection view
+
 extension CharacterViewController:  UICollectionViewDelegateFlowLayout {
-    private func setupCollectionView()  {
-        charactersCollectionView.register(UINib(nibName: self.characterCollectionCell , bundle: nil), forCellWithReuseIdentifier:  self.characterCollectionCell)
-        charactersCollectionView.rx.setDelegate(self).disposed(by: disposeBage)
-        
-    }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cell = CGSize(width:collectionView.frame.width, height: collectionView.frame.height )

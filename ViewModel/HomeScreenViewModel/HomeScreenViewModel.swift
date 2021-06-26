@@ -27,6 +27,7 @@ class HomeScreenViewModel {
     private var sliderTimer: Timer?
     private var currentSlide = 0
     var slideToItem: PublishSubject<Int> = .init()
+    var allCharacters = RxAPIProvider.shared.getAllCharacterList()
     
     
     func setupSliderTimer(){
