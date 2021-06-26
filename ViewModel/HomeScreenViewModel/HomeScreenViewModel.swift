@@ -31,7 +31,7 @@ class HomeScreenViewModel {
     
     
     func setupSliderTimer(){
-        sliderTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(scrollToNextItem), userInfo: nil, repeats: true)
+        sliderTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(scrollToNextItem), userInfo: nil, repeats: true)
     }
     
     @objc private func scrollToNextItem(){
