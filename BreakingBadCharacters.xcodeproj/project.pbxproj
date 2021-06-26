@@ -36,6 +36,10 @@
 		047E500B26849846005C4BB1 /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E500A26849846005C4BB1 /* UIScrollView+Rx.swift */; };
 		047E500F2684CD9C005C4BB1 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E500E2684CD9C005C4BB1 /* DictionaryExtension.swift */; };
 		047E50112684CDCD005C4BB1 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E50102684CDCD005C4BB1 /* StringExtension.swift */; };
+		04BBF9FC26868C9600CE5F53 /* Observable+Argo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF9FB26868C9600CE5F53 /* Observable+Argo.swift */; };
+		04BBF9FE26868CC300CE5F53 /* characterListEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF9FD26868CC300CE5F53 /* characterListEnvelope.swift */; };
+		04BBFA0026868D2B00CE5F53 /* RxAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF9FF26868D2B00CE5F53 /* RxAPIProvider.swift */; };
+		04BBFA0226868E6700CE5F53 /* Response+Argo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBFA0126868E6700CE5F53 /* Response+Argo.swift */; };
 		4B06632240AA1A04C5795970 /* Pods_BreakingBadCharacters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BE8591F5BF05F0CE9E9F15 /* Pods_BreakingBadCharacters.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +75,10 @@
 		047E500A26849846005C4BB1 /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		047E500E2684CD9C005C4BB1 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		047E50102684CDCD005C4BB1 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		04BBF9FB26868C9600CE5F53 /* Observable+Argo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Argo.swift"; sourceTree = "<group>"; };
+		04BBF9FD26868CC300CE5F53 /* characterListEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = characterListEnvelope.swift; sourceTree = "<group>"; };
+		04BBF9FF26868D2B00CE5F53 /* RxAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxAPIProvider.swift; sourceTree = "<group>"; };
+		04BBFA0126868E6700CE5F53 /* Response+Argo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+Argo.swift"; sourceTree = "<group>"; };
 		32BE8591F5BF05F0CE9E9F15 /* Pods_BreakingBadCharacters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingBadCharacters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD4E63E6A8B94E2467CEA17 /* Pods-BreakingBadCharacters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadCharacters.debug.xcconfig"; path = "Target Support Files/Pods-BreakingBadCharacters/Pods-BreakingBadCharacters.debug.xcconfig"; sourceTree = "<group>"; };
 		7C700E9CEA6EE4F7D22688CC /* Pods-BreakingBadCharacters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadCharacters.release.xcconfig"; path = "Target Support Files/Pods-BreakingBadCharacters/Pods-BreakingBadCharacters.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 		042187FD2683E5D200F30573 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				04BBF9FA26868C8100CE5F53 /* RX Helper */,
 				047E50092684982A005C4BB1 /* Extensions */,
 				042188242683E7D300F30573 /* Constant */,
 				042188202683E7D300F30573 /* Functions */,
@@ -293,6 +302,17 @@
 				047E50102684CDCD005C4BB1 /* StringExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04BBF9FA26868C8100CE5F53 /* RX Helper */ = {
+			isa = PBXGroup;
+			children = (
+				04BBF9FB26868C9600CE5F53 /* Observable+Argo.swift */,
+				04BBF9FD26868CC300CE5F53 /* characterListEnvelope.swift */,
+				04BBF9FF26868D2B00CE5F53 /* RxAPIProvider.swift */,
+				04BBFA0126868E6700CE5F53 /* Response+Argo.swift */,
+			);
+			path = "RX Helper";
 			sourceTree = "<group>";
 		};
 		2997D51F4C39BC6B270BF69D /* Pods */ = {
@@ -433,9 +453,13 @@
 			files = (
 				042188102683E70700F30573 /* HomeViewController.swift in Sources */,
 				0421880C2683E6F700F30573 /* CharacterViewController.swift in Sources */,
+				04BBF9FE26868CC300CE5F53 /* characterListEnvelope.swift in Sources */,
 				042188262683E7D300F30573 /* ProgressHUD.swift in Sources */,
 				042188292683E7D300F30573 /* constant.swift in Sources */,
+				04BBFA0026868D2B00CE5F53 /* RxAPIProvider.swift in Sources */,
+				04BBFA0226868E6700CE5F53 /* Response+Argo.swift in Sources */,
 				042188152683E72800F30573 /* HomeScreenViewModel.swift in Sources */,
+				04BBF9FC26868C9600CE5F53 /* Observable+Argo.swift in Sources */,
 				042188172683E73300F30573 /* CharacterScreenModel.swift in Sources */,
 				042188132683E71C00F30573 /* CharacterScreenViewModel.swift in Sources */,
 				047E500F2684CD9C005C4BB1 /* DictionaryExtension.swift in Sources */,

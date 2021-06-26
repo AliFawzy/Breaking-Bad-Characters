@@ -23,15 +23,14 @@ class HomeViewController: BaseViewController {
     private let postersCollectionCell = "HomePostersCollectionCell"
     private let charactersTableCell = "HomeCharactersTableCell"
     private let disposeBage = DisposeBag()
+    private var refreshControl: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCharacters()
         subscribeResponse()
         subscribeLoading()
         setupTableView()
         subscibeTableCellSelection()
-        scrollToBottom()
         setupCollectionView()
         homeViewModel.setupSliderTimer()
         bindSliders()
@@ -42,26 +41,40 @@ class HomeViewController: BaseViewController {
 // MARK: - Functions
 extension HomeViewController{
     
-    private func getCharacters() {
-        if self.isConnectedToNetwork(){
-            self.homeViewModel.getCharactersData()
-        }else{
-            ProgressHUD.showError("please check Your internet")
-        }
-    }
     
     private func subscribeResponse(){
-        homeViewModel.arrCharactersObserver.bind(to: self.charactersTableView.rx.items(cellIdentifier: self.charactersTableCell, cellType: HomeCharactersTableCell.self)){ (row, result, cell) in
-            cell.selectionStyle = .none
-            cell.configure(with: result)
-            
-        }.disposed(by: disposeBage)
+        
+        self.homeViewModel.arrCharacters.asDriver()
+            .drive(charactersTableView.rx.items(cellIdentifier: self.charactersTableCell, cellType: HomeCharactersTableCell.self)) { index, model, cell in
+                cell.configure(with: model)
+            }.disposed(by: disposeBage)
         
         
-        homeViewModel.arrCharactersObserver.bind(to: self.postersCollectionView.rx.items(cellIdentifier: self.postersCollectionCell, cellType: HomePostersCollectionCell.self)){ (row, result, cell) in
-            cell.configure(with: result)
-            
-        }.disposed(by: disposeBage)
+        self.homeViewModel.arrCharacters.asDriver()
+            .drive(postersCollectionView.rx.items(cellIdentifier: self.postersCollectionCell, cellType: HomePostersCollectionCell.self)) { index, model, cell in
+                cell.configure(with: model)
+            }.disposed(by: disposeBage)
+        
+        
+        
+        self.charactersTableView.rx_reachedBottom
+            .map { _ in () }
+            .bind(to: self.homeViewModel.loadNextPageTrigger)
+            .disposed(by: disposeBage)
+
+        self.refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: self.homeViewModel.refreshTrigger)
+            .disposed(by: disposeBage)
+
+        self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .map { _ in () }
+            .bind(to: homeViewModel.refreshTrigger)
+            .disposed(by: disposeBage)
+        
+        self.homeViewModel.arrCharacters.asObservable()
+            .map { _ in false }
+            .bind(to: self.refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBage)
         
     }
     private func subscribeLoading(){
@@ -80,16 +93,12 @@ extension HomeViewController{
             self?.postersCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: [.centeredHorizontally, .centeredVertically], animated: true)
         }).disposed(by: disposeBage)
         
-        homeViewModel.slides.subscribe { [weak self] (_) in
+        homeViewModel.arrCharacters.subscribe { [weak self] (_) in
             self?.postersCollectionView.reloadData()
         }.disposed(by: disposeBage)
         
     }
-    
-    
-    
-    
-    
+
 }
 
 // MARK: - Setup Table view
@@ -101,19 +110,13 @@ extension HomeViewController: UITableViewDelegate{
     private func subscibeTableCellSelection(){
         Observable.zip(charactersTableView.rx.itemSelected, charactersTableView.rx.modelSelected(HomeCharacterModel.self)).bind {  selectedIndex, character in
             let vc = CharacterViewController.init()
-            vc.indexId = (character.charID ?? 1) - 1
+            vc.indexId = (character.charID ) - 1
             vc.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(vc, animated: true)
             
         }.disposed(by: disposeBage)
     }
-    private func scrollToBottom(){
-        self.charactersTableView.rx_reachedBottom
-            .map { _ in () }
-            .bind(to: self.homeViewModel.loadNextPageTrigger)
-            .disposed(by: disposeBage)
-    }
-    
+   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }

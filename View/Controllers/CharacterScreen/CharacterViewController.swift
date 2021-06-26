@@ -24,11 +24,11 @@ class CharacterViewController: BaseViewController {
     private let characterCollectionCell = "CharacterCollectionViewCell"
     private let disposeBage = DisposeBag()
     var indexId = 0
+    private var refreshControl: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getCharacters()
+       
         subscribeResponse()
         subscribeLoading()
         setupCollectionView()
@@ -44,22 +44,45 @@ class CharacterViewController: BaseViewController {
 extension CharacterViewController{
     
     
-    private func getCharacters() {
-        if self.isConnectedToNetwork(){
-            self.homeViewModel.getCharactersData()
-        }else{
-            ProgressHUD.showError("please check Your internet")
-        }
+    func getCharacters(){
+        if self.homeViewModel.arrCharacters.value.count < indexId{
+        self.homeViewModel.arrCharacters.asObservable()
+            .map { _ in () }
+            .bind(to: self.homeViewModel.loadNextPageTrigger)
+            .disposed(by: disposeBage)
+            
     }
-    
+    }
     private func subscribeResponse(){
         
-        homeViewModel.arrCharactersObserver.bind(to: self.charactersCollectionView.rx.items(cellIdentifier: self.characterCollectionCell, cellType: CharacterCollectionViewCell.self)){ (row, result, cell) in
+        homeViewModel.arrCharacters.bind(to: self.charactersCollectionView.rx.items(cellIdentifier: self.characterCollectionCell, cellType: CharacterCollectionViewCell.self)){ (row, result, cell) in
             cell.configure(with: result)
             
-            self.charactersCollectionView.scrollToItem(at: IndexPath(row: self.indexId, section: 0), at: [.centeredHorizontally, .centeredVertically], animated: true)
+            self.charactersCollectionView.scrollToItem(at: IndexPath(row: self.indexId, section: 0), at: [.centeredHorizontally, .centeredVertically], animated: false)
+            
+            
             
         }.disposed(by: disposeBage)
+        
+        self.charactersCollectionView.rx_reachedBottom
+            .map { _ in () }
+            .bind(to: self.homeViewModel.loadNextPageTrigger)
+            .disposed(by: disposeBage)
+
+        self.refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: self.homeViewModel.refreshTrigger)
+            .disposed(by: disposeBage)
+
+        self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .map { _ in () }
+            .bind(to: homeViewModel.refreshTrigger)
+            .disposed(by: disposeBage)
+        
+        self.homeViewModel.arrCharacters.asObservable()
+            .map { _ in false }
+            .bind(to: self.refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBage)
+        
         
         
     }

@@ -24,9 +24,9 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         self.nameLbl.text = model.name
         self.NickNameLbl.text = model.nickname
         self.birthLbl.text = model.birthday
-        self.occupationLbl.text = model.occupation?.joined(separator: ",\n")
-        guard let url = model.img else{ return }
-        posterImage.sd_setImage(with: URL(string: url), placeholderImage: #imageLiteral(resourceName: "logo"))
+        self.occupationLbl.text = model.occupation.joined(separator: ",\n")
+//        guard let url = model.img else{ return }
+        posterImage.sd_setImage(with: URL(string: model.img), placeholderImage: #imageLiteral(resourceName: "logo"))
         
     }
 }

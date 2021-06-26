@@ -21,8 +21,8 @@ class HomePostersCollectionCell: UICollectionViewCell {
     }
     
     func configure(with model: HomeCharacterModel) {
-        guard let url = model.img else{ return }
-        poster.sd_setImage(with: URL(string: url), placeholderImage: #imageLiteral(resourceName: "logo"))
+//        guard let url = model.img else{ return }
+        poster.sd_setImage(with: URL(string: model.img), placeholderImage: #imageLiteral(resourceName: "logo"))
     }
 
 }

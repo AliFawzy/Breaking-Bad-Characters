@@ -6,13 +6,12 @@ target 'BreakingBadCharacters' do
   pod 'SDWebImage'
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'Alamofire'
   pod 'Argo'
-  pod 'SnapKit'
   pod 'Curry'
   pod 'Runes'
   pod 'Moya/RxSwift'
   pod 'RxDataSources'
   pod 'RxSwiftExt'
+ 
 
 end

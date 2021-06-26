@@ -30,8 +30,8 @@ class HomeCharactersTableCell: UITableViewCell {
     }
     func configure(with model: HomeCharacterModel) {
         self.characterName.text = model.name
-        guard let url = model.img else{ return }
-        characterImage.sd_setImage(with: URL(string: url), placeholderImage: #imageLiteral(resourceName: "logo"))
+      //  guard let url = model.img else{ return }
+        characterImage.sd_setImage(with: URL(string: model.img), placeholderImage: #imageLiteral(resourceName: "logo"))
         
     }
 }
